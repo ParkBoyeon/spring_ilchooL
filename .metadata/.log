@@ -2030,3 +2030,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2021-09-06 22:44:16.654
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2021-09-06 22:59:33.183
+!MESSAGE No repository found at http://dl.bintray.com/testng-team/testng-p2-release/.
