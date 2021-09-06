@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="KospiMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="KospiMap" type="project.spring.ilchooL.model.Kospi">
+		<result property="Date" column="Date" />
+		<result property="kp_high" column="kp_high" />
+		<result property="kp_low" column="kp_low" />
+		<result property="kp_open" column="kp_open" />
+		<result property="kp_close" column="kp_close" />
+		<result property="kp_volume" column="kp_volume" />
+		<result property="kp_adj_close" column="kp_adj_close" />
+	</resultMap>
+	
+
+	
+
+	
+	<select id="selectKospi"
+		parameterType="project.spring.ilchooL.model.Kospi"
+		resultMap="KospiMap">
+		SELECT Date, kp_high, kp_low, kp_open, kp_close, kp_volume, kp_adj_close FROM kospi;
+	</select>
+	
+
+
+	
+</mapper>

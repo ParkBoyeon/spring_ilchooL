@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="locMapper">
+	<resultMap id="locMap" type="project.spring.ilchooL.model.locItem">
+		<result property="num" column="num" />
+		<result property="seoul" column="seoul" />
+		<result property="loc" column="loc" />
+		<result property="loc_x" column="loc_x" />
+		<result property="loc_y" column="loc_y" />
+	</resultMap>
+
+	<select id="searchLoc" parameterType="project.spring.ilchooL.model.locItem" resultMap="locMap">
+		Select loc, loc_x, loc_y 
+		From seoul_loc
+		Where loc = #{loc};
+	</select>
+	
+	<select id="searchLocAll" parameterType="project.spring.ilchooL.model.locItem" resultMap="locMap">
+		Select loc, loc_x, loc_y 
+		From seoul_loc;
+	</select>
+</mapper>

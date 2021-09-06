@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="newsMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="newsMapper" type="project.spring.ilchooL.model.News">
+		<result property="news_id" column="news_id" />
+		<result property="news_url" column="news_url" />
+		<result property="news_date" column="news_date" />
+		<result property="news_title" column="news_title" />
+		<result property="news_category_id" column="news_category_id" />
+		<result property="news_keyword" column="news_keyword" />
+	</resultMap>
+	
+	<insert id="insertNews"
+		parameterType="project.spring.ilchooL.model.News"
+		useGeneratedKeys="true" keyProperty="news_id">
+		INSERT INTO news (
+			news_url, news_date, news_title, news_category_id, news_keyword
+		) VALUES (
+			#{news_url}, #{news_date}, #{news_title}, #{news_category_id}, #{news_keyword}
+		)
+	</insert>
+	
+	<update id="updateNews1"
+		parameterType="project.spring.ilchooL.model.News">
+		UPDATE news SET 
+		news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+		<where>
+	          <if test="news_id==1">news_id=1</if>
+	          <if test="news_id==10">news_id=10</if>
+	          <if test="news_id==19">news_id=19</if>
+	          <if test="news_id==28">news_id=28</if>
+	          <if test="news_id==37">news_id=37</if>
+         </where>
+	</update>
+	
+	<update id="updateNews2"
+		parameterType="project.spring.ilchooL.model.News">
+		UPDATE news SET 
+		news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+		<where>
+	         <if test="news_id==2">news_id=2</if>
+	         <if test="news_id==11">news_id=11</if>
+	         <if test="news_id==20">news_id=20</if>
+	         <if test="news_id==29">news_id=29</if>
+	         <if test="news_id==38">news_id=38</if>
+		</where>
+	</update>
+	
+	<update id="updateNews3"
+		parameterType="project.spring.ilchooL.model.News">
+		UPDATE news SET 
+		news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+		<where>
+	         <if test="news_id==3">news_id=3</if>
+	         <if test="news_id==12">news_id=12</if>
+	         <if test="news_id==21">news_id=21</if>
+	         <if test="news_id==30">news_id=30</if>
+	         <if test="news_id==39">news_id=39</if>
+		</where>
+	</update>
+	
+	<update id="updateNews4"
+		parameterType="project.spring.ilchooL.model.News">
+		UPDATE news SET 
+		news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+		<where>
+	         <if test="news_id==4">news_id=4</if>
+	         <if test="news_id==13">news_id=13</if>
+	         <if test="news_id==22">news_id=22</if>
+	         <if test="news_id==31">news_id=31</if>
+	         <if test="news_id==40">news_id=40</if>
+		</where>
+	</update>
+	
+	<update id="updateNews5"
+		parameterType="project.spring.ilchooL.model.News">
+		UPDATE news SET 
+		news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+		<where>
+	         <if test="news_id==5">news_id=5</if>
+	         <if test="news_id==14">news_id=14</if>
+	         <if test="news_id==23">news_id=23</if>
+	         <if test="news_id==32">news_id=32</if>
+	         <if test="news_id==41">news_id=41</if>
+		</where>
+	</update>
+
+   
+   <update id="updateNews6"
+      parameterType="project.spring.ilchooL.model.News">
+      UPDATE news SET 
+      news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+      <where>
+            <if test="news_id==6">news_id=6</if>
+            <if test="news_id==15">news_id=15</if>
+            <if test="news_id==24">news_id=24</if>
+            <if test="news_id==33">news_id=33</if>
+            <if test="news_id==42">news_id=42</if>
+      </where>
+   </update>
+   
+   <update id="updateNews7"
+      parameterType="project.spring.ilchooL.model.News">
+      UPDATE news SET 
+      news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+      <where>
+            <if test="news_id==7">news_id=7</if>
+            <if test="news_id==16">news_id=16</if>
+            <if test="news_id==25">news_id=25</if>
+            <if test="news_id==34">news_id=34</if>
+            <if test="news_id==43">news_id=43</if>
+      </where>
+   </update>
+   
+   <update id="updateNews8"
+      parameterType="project.spring.ilchooL.model.News">
+      UPDATE news SET 
+      news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+      <where>
+            <if test="news_id==8">news_id=8</if>
+            <if test="news_id==17">news_id=17</if>
+            <if test="news_id==26">news_id=26</if>
+            <if test="news_id==35">news_id=35</if>
+            <if test="news_id==44">news_id=44</if>
+      </where>
+   </update>
+   
+   <update id="updateNews9"
+      parameterType="project.spring.ilchooL.model.News">
+      UPDATE news SET 
+      news_url=#{news_url}, news_date=#{news_date}, news_title=#{news_title}, news_category_id=#{news_category_id}, news_keyword=#{news_keyword}
+      <where>
+            <if test="news_id==9">news_id=9</if>
+            <if test="news_id==18">news_id=18</if>
+            <if test="news_id==27">news_id=27</if>
+            <if test="news_id==36">news_id=36</if>
+            <if test="news_id==45">news_id=45</if>
+      </where>
+   </update>
+	
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="covidMapper">
+
+	<resultMap id="covidMap" type="project.spring.ilchooL.model.CovidItem">
+		<result property="covid_id" column="covid_id" />
+		<result property="date" column="date" />
+		<result property="active" column="active" />
+		<result property="confirmed" column="confirmed" />
+		<result property="confirmed_acc" column="confirmed_acc" />
+		<result property="released" column="released" />
+		<result property="released_acc" column="released_acc" />
+		<result property="death" column="death" />
+		<result property="death_acc" column="death_acc" />
+	</resultMap>
+	
+	<insert id="insertCovidItem"
+		parameterType="project.spring.ilchooL.model.CovidItem">
+		Insert Into covid19 (
+			date, active, confirmed, confirmed_acc, released, released_acc, death, death_acc
+		) Values (
+			#{date}, #{active}, #{confirmed}, #{confirmed_acc}, #{released}, #{released_acc}, #{death}, #{death_acc}
+		);
+	</insert>
+	
+	<update id="updateCovidItem" parameterType="project.spring.ilchooL.model.CovidItem">
+		Update covid19 Set
+			date = #{date},
+			active = #{active},
+			confirmed = #{confirmed},
+			confirmed_acc = #{confirmed_acc},
+			released = #{released},
+			released_acc = #{released_acc},
+			death = #{death},
+			death_acc = #{death_acc}
+		Where date = #{date};
+	</update>
+	
+	<select id="selectCovidItem" parameterType="project.spring.ilchooL.model.CovidItem" resultMap="covidMap">
+		Select date, active, confirmed, confirmed_acc, released, released_acc, death, death_acc
+		From covid19
+		Where covid_id = #{covid_id};
+	</select>
+	
+	<select id="selectCovidList" parameterType="project.spring.ilchooL.model.CovidItem" resultMap="covidMap">
+		Select date, active, confirmed, confirmed_acc, released, released_acc, death, death_acc
+		From covid19
+		Order By covid_id DESC
+		LIMIT 0, 7;	
+	</select>
+</mapper>

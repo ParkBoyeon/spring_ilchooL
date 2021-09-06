@@ -1,0 +1,349 @@
+body {
+    margin: 0;
+    background: #fff;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+}
+
+#new_box h2 {
+    padding-top: 19px;
+    padding-bottom: 5px;
+    font-size: 25px !important;
+    font-weight: bold;
+    color: #428bca;
+}
+
+.wrapper {
+    position: relative;
+    height: 180%;
+    margin-bottom: 350px;
+}
+
+#inner_join {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.mypage_logo {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.mypage_delete {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%
+}
+
+.mypage_delete hr {
+    border: solid 5px #E2E2E2;
+}
+
+.user_delete {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.user_delete h2 {
+    padding-bottom: 5px;
+    font-size: 25px !important;
+    font-weight: bold;
+    color: #428bca;
+}
+
+.mypage_logo img {
+    height: 40px;
+    vertical-align: bottom;
+    margin-right: 10px;
+}
+
+/* 입력폼 */
+.mypage {
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.box {
+    display: block;
+    width: 100%;
+    height: 51px;
+    border: solid 2px #87CEFA;
+    border-radius: 5px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+}
+
+.address1 {
+	display: block;
+	height: 51px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.addr1 {
+    display: block;
+    height: 51px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.box1 {
+    display: block;
+    width: 35%;
+    height: 51px;
+    border: solid 2px #87CEFA;
+    border-radius: 5px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.box2 {
+    display: block;
+    width: 100%;
+    height: 51px;
+    border: solid 2px #87CEFA;
+    border-radius: 5px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.box3 {
+    display: block;
+    width: 100%;
+    height: 51px;
+    border: solid 2px #87CEFA;
+    border-radius: 5px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+    float: left;
+    margin-bottom: 30px;
+}
+
+.box4 {
+    display: block;
+    width: 100%;
+    height: 51px;
+    border: solid 2px #87CEFA;
+    border-radius: 5px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+    float: right;
+    margin-bottom: 30px;
+}
+
+.new {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+}
+
+.new_1 {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+    text-align: center;
+}
+
+.box.new_pass {
+    padding-right: 40px;
+}
+
+.box.new_pass_check {
+    padding-right: 40px;
+}
+
+.step_url {
+    position: absolute;
+    top: 16px;
+    right: 13px;
+    font-size: 15px;
+    color: #8e8e8e;
+}
+
+.new_pw_img {
+    width: 18px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    margin-top: -10px;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    height: 29px;
+    font-size: 15px;
+    background: #fff url(../img/login_new_check.gif) 100% 50% no-repeat;
+    background-size: 20px 8px;
+    -webkit-appearance: none;
+    display: inline-block;
+    text-align: start;
+    border: none;
+    cursor: default;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+}
+
+/* 에러메세지 */
+.error_next_box {
+    margin-top: 9px;
+    font-size: 12px;
+    color: red;
+    display: none;
+}
+
+#alertTxt1 {
+    position: absolute;
+    top: 19px;
+    right: 38px;
+    font-size: 12px;
+    color: red;
+    display: none;
+}
+
+#alertTxt2 {
+    position: absolute;
+    top: 19px;
+    right: 38px;
+    font-size: 12px;
+    color: red;
+    display: none;
+}
+
+/* 버튼 */
+.btn_area {
+    margin: 30px 0 91px;
+}
+
+#btnJoin {
+    width: 100%;
+    padding: 21px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #428bca;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+}
+
+.click {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    float: right;
+    margin-bottom: 20px;
+}
+
+/** 회원탈퇴 */
+#delete {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 1px 4px 0 0;
+    background-position: -60px 0;
+    color: #333;
+    vertical-align: top;
+}
+
+.check_delete {
+    margin: 15px 0;
+}
+
+.user_delete h5 {
+    color: #6a92cc;
+    display: inline-block;
+}
+
+#next-button {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    background-color: #242222;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+}
+
+#next-button:hover:enabled {
+    background-color: #a3a2a2;
+}
+
+#next-button:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/** swal */
+.hidden {
+  display: none;
+}
+
+form > .row {
+  margin-bottom: 20px;
+}
+
+form > .row:last-child {
+  margin-bottom: 0;
+}
+
+form input.invalid {
+  border-color: #dc3545;
+}
+
+form .invalid-feedback {
+  color: #dc3545;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+p  {
+	text-align:center;
+	margin: 0 !important;
+}
+#pw_btn {
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+}
+
+.swal-button{
+	background-color: #428bca;
+}

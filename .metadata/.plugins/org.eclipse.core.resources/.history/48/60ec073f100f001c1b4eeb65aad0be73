@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MembersMapper">
+
+    <!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+    <resultMap id="membersMap" type="project.spring.ilchooL.model.Members">
+        <!-- 일련번호, IS NOT NULL, PRI -->
+        <result property="id" column="id" />
+        <!-- 아이디, IS NOT NULL -->
+        <result property="user_id" column="user_id" />
+        <!-- 비밀번호(암호화저장), IS NOT NULL -->
+        <result property="user_pw" column="user_pw" />
+        <!-- 회원이름, IS NOT NULL -->
+        <result property="user_name" column="user_name" />
+        <!-- 이메일, IS NOT NULL -->
+        <result property="email" column="email" />
+        <!-- 연락처, IS NOT NULL -->
+        <result property="phone" column="phone" />
+        <!-- 생년월일, IS NOT NULL -->
+        <result property="birthday" column="birthday" />
+        <!-- 성별(M=남자,F=여자), IS NOT NULL -->
+        <result property="gender" column="gender" />
+        <!-- 우편번호, IS NOT NULL -->
+        <result property="postcode" column="postcode" />
+        <!-- 검색된 주소, IS NOT NULL -->
+        <result property="addr1" column="addr1" />
+        <!-- 나머지 주소, IS NOT NULL -->
+        <result property="addr2" column="addr2" />
+        <!-- 프로필사진 정보{json=UploadItem}, IS NULL -->
+        <result property="photoJson" column="photo" />
+        <!-- 탈퇴여부(Y/N), IS NOT NULL -->
+        <result property="is_out" column="is_out" />
+        <!-- 관리자 여부(Y/N), IS NOT NULL -->
+        <result property="is_admin" column="is_admin" />
+        <!-- 마지막 로그인 일시, IS NULL -->
+        <result property="login_date" column="login_date" />
+        <!-- 등록일시, IS NOT NULL -->
+        <result property="reg_date" column="reg_date" />
+        <!-- 변경일시, IS NOT NULL -->
+        <result property="edit_date" column="edit_date" />
+    </resultMap>
+    
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectMember" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+        SELECT id, user_id, user_name, email, phone,
+		birthday, gender, postcode, addr1, addr2,
+		photo, is_out, is_admin,login_date, reg_date, edit_date
+		FROM members
+		WHERE id=#{id}
+    </select>
+    
+    <!-- 다중행 조회를 위한 기능 정의 -->
+    <select id="selectMembers" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+        SELECT id, user_id, user_name, email, phone,
+		birthday, gender, postcode, addr1, addr2,
+		photo, is_out, is_admin,login_date, reg_date, edit_date
+		FROM members
+		<where>
+			<if test="user_name !=null and user_name !=''">user_name LIKE concat ('%', #{user_name},'%')</if>
+		</where>
+        ORDER BY id DESC
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    <!-- 데이터 수 조회를 위한 기능 정의 -->
+    <select id="selectCountAll" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+        SELECT COUNT(*) FROM members
+    </select>
+    
+    <!-- 데이터 저장을 위한 기능 정의 -->
+    <insert id="insertMember" parameterType="project.spring.ilchooL.model.Members" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO members (
+        user_id, user_pw, user_name, email, phone, birthday, gender, postcode, addr1, addr2, photo, is_out, is_admin, login_date, reg_date, edit_date
+        ) VALUES (
+        #{user_id}, MD5(#{user_pw}), #{user_name}, #{email}, #{phone}, #{birthday}, #{gender}, #{postcode}, #{addr1}, #{addr2}, #{photoJson}, "N", "N", #{login_date}, now(), now()
+        )
+    </insert>
+    
+    <!-- 데이터 삭제를 위한 기능 정의 -->
+    <delete id="deleteMembers" parameterType="project.spring.ilchooL.model.Members">
+        DELETE FROM members WHERE id=#{id}
+    </delete>
+    
+    <!-- 회원정보 수정 -->
+    <update id="updateMember" parameterType="project.spring.ilchooL.model.Members">
+        UPDATE members SET
+        phone=#{phone},
+        postcode=#{postcode},
+        addr1=#{addr1},
+        addr2=#{addr2},
+        photo=#{photoJson},
+        edit_date=now()
+        WHERE id=#{id}
+    </update>
+    
+   <!-- 회원정보(비밀번호) 수정 -->
+   <update id="updateMemberPw" parameterType="project.spring.ilchooL.model.Members">
+        UPDATE members SET
+        user_pw=MD5(#{user_pw}),
+        edit_date=now()
+        WHERE user_id=#{user_id}
+    </update> 
+    
+    
+   <!-- 아이디 찾기를 위한 조회 기능 -->
+	<select id="findId" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+		SELECT id, user_id, user_name, email, phone,
+		birthday, gender, postcode, addr1, addr2,
+		photo, is_out, is_admin,login_date, reg_date, edit_date
+		FROM members
+		WHERE user_name=#{user_name} AND email=#{email} AND birthday=#{birthday}
+	</select>
+    
+    <!-- 비밀번호 찾기를 위한 조회 기능 -->
+	<select id="findPw" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+		SELECT id, user_id, user_name, email, phone,
+		birthday, gender, postcode, addr1, addr2,
+		photo, is_out, is_admin, login_date, reg_date, edit_date
+		FROM members
+		WHERE user_id=#{user_id} AND email=#{email}
+	</select>
+	
+    <!-- 아이디 중복검사 -->
+    <select id="idUniqueCheck" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+        SELECT COUNT(*) FROM members WHERE user_id=#{user_id}
+    </select>
+    
+    <!-- 이메일 중복검사 -->
+    <select id="emailUniqueCheck" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+        SELECT COUNT(*) FROM members WHERE email=#{email}
+    </select>
+    
+    <!-- 로그인 조회 -->
+    <select id="login" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+        SELECT id, user_id, user_name, email, phone,
+		birthday, gender, postcode, addr1, addr2,
+		photo, is_out, is_admin, login_date, reg_date, edit_date
+		FROM members
+		WHERE user_id=#{user_id} AND user_pw=MD5(#{user_pw})
+    </select>
+    
+    <!-- 최근 로그인 시간 갱신 -->
+    <update id="updateLoginDate" parameterType="project.spring.ilchooL.model.Members">
+        UPDATE members SET login_date=now() WHERE id=#{id}
+    </update>
+    
+    <!-- 관리자 여부 확인 검사 -->
+	<select id="selectAdmin" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+		SELECT is_admin FROM id WHERE is_admin = 'Y';
+	</select>
+	
+    <!-- 회원 탈퇴 여부 확인 -->
+	<update id="userOut" parameterType="project.spring.ilchooL.model.Members">
+		UPDATE members SET is_out = 'Y', edit_date = now()
+		WHERE id = #{id};
+	</update>
+	
+    <!-- ADMIN -->
+    
+   	<!-- 단일행 조회를 위한 기능 정의 -->
+	<select id="adminSelectItem"
+		parameterType="project.spring.ilchooL.model.Members"
+		resultMap="membersMap">
+		SELECT id, user_id, user_pw, user_name, email, phone, birthday, gender, postcode, addr1, addr2, is_out, is_admin, login_date, reg_date, edit_date FROM members WHERE id=#{id};
+	</select>
+	
+   	<!-- 다중행 조회를 위한 기능 정의 -->
+    <select id="adminSelectList" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+        SELECT id, user_id, user_pw, user_name, email, phone, birthday, gender, postcode, addr1, addr2, is_out, is_admin, login_date, reg_date, edit_date FROM members
+        <where>
+            <if test="user_id != null and user_id != ''">
+                user_id LIKE concat('%', #{user_id}, '%')
+            </if>
+            <if test="user_name != null and user_name != ''">
+                OR user_name LIKE concat('%', #{user_name}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                OR email LIKE concat('%', #{email}, '%')
+            </if>            
+        </where>
+        ORDER BY id DESC
+         
+	<!-- 페이지 구현을 위한 LIMIT절 추가 -->
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>    
+    
+  	<!-- 데이터 갱신을 위한 기능 정의 -->
+    <update id="adminUpdateItem" parameterType="project.spring.ilchooL.model.Members">
+        UPDATE members SET user_id=#{user_id}, user_name=#{user_name}, email=#{email}, phone=#{phone}, gender=#{gender}, birthday=#{birthday}
+        WHERE id=#{id};
+    </update>
+    
+	<!-- 검색 COUNT 기능 정의 -->
+    <select id="adminSelectCountAll" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+        SELECT COUNT(*) FROM members
+        <where>
+            <if test="user_id != null and user_id != ''">
+                user_id LIKE concat('%', #{user_id}, '%')
+            </if>
+            <if test="user_name != null and user_name != ''">
+                OR user_name LIKE concat('%', #{user_name}, '%')
+            </if>
+        </where>
+    </select>
+    
+    <!-- 대시보드 여성 숫자 -->
+	<select id="dashboardCF" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+		Select Count(*) From members 
+		<where>
+			gender = #{gender}
+		</where>
+	</select>
+	<!-- 대시보드 남자 숫자 -->
+	<select id="dashboardCM" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+		Select Count(*) From members 
+		<where>
+			gender = "M"
+		</where>
+	</select>        
+	
+	<select id="dashboardaddr1" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+		Select Count(*) From members
+		<where>
+			addr1 Like concat('%', #{addr1} , '%');
+		</where>
+	</select>
+	
+	
+	<select id="dashboardold" parameterType="project.spring.ilchooL.model.Members">
+		Select Count(*) From members
+		<where>
+			Date_Format(now(), '%Y')- Date_Format(birthday. '%Y')+ 1>20;
+			
+		</where>
+	</select>
+	
+	<select id="dashboardOld20" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+      Select Count(*)
+      From members
+      Where Date_Format(now(), '%Y')- Date_Format(birthday, '%Y') + 1 >= 20 AND 25 > Date_Format(now(), '%Y') - Date_Format(birthday, '%Y') + 1;   
+   </select>
+   
+    <select id="dashboardOld25" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+      Select Count(*)
+      From members
+      Where Date_Format(now(), '%Y')- Date_Format(birthday, '%Y') + 1 >= 25 AND 30 > Date_Format(now(), '%Y') - Date_Format(birthday, '%Y') + 1;  
+   </select>
+   
+    <select id="dashboardOld30" parameterType="project.spring.ilchooL.model.Members" resultType="int">
+      Select Count(*)
+      From members
+      Where Date_Format(now(), '%Y')- Date_Format(birthday, '%Y') + 1 >= 30 AND 35 > Date_Format(now(), '%Y') - Date_Format(birthday, '%Y') + 1;  
+   </select>
+   
+   <update id="updatePw" parameterType="project.spring.ilchooL.model.Members">
+         UPDATE members SET user_pw=MD5(#{user_pw}) WHERE user_id=#{user_id};
+   </update>
+   
+   <select id="id_select" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+         SELECT * FROM members WHERE user_id=#{user_id} AND email=#{email};
+   </select>
+   
+   <select id="searchID" parameterType="project.spring.ilchooL.model.Members" resultMap="membersMap">
+	   	Select user_id
+	   	From members
+	   	Where user_name = #{user_name} And birthday = #{birthday} And email = #{email};
+   </select>
+
+</mapper>

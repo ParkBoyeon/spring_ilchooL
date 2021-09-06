@@ -1,0 +1,41 @@
+@charset "UTF-8";
+html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+
+#header { height: 80px; background-color: #428bca; width: 100% !important; }
+
+#logo { display: block; margin: 0 auto; width: 129.47px; padding-top: 25px; }
+
+/* 햄버거 버튼 영역 */
+
+#hamburger { width: 30px; height: 26px; position: absolute; top: 27px; left: 50px; z-index: 101; }
+
+.hamburger .line { width: 30px; height: 2px; background-color: #FFFFFF; display: block;
+  margin: 5px 0; transition: all 0.2s ease-in-out; }
+
+.hamburger:hover { cursor: pointer; }
+
+#hamburger.is-active .line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#hamburger.is-active .line:nth-child(2) { opacity: 0; }
+#hamburger.is-active .line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* 햄버거 버튼 영역 끝 */
+
+/* 메뉴 영역 */
+.overlay { height: 100%; width: 100%; display: block; opacity: 0; visibility: hidden; position: fixed; z-index: 100;
+	top: 0; left: 0; background-color: #428bca; overflow: hidden; transition: 0.5s; }
+
+#menuNav.is-active { opacity: 1; visibility: visible; }
+
+body.is-active { overflow: hidden; }
+
+.overlay-content { top: 15%; text-align: left; margin-top: 100px; padding-left: 50px; padding-right: 65px; }
+
+.overlay a { text-decoration: none; font-size: 36px; color: #FFFFFF; display: block; transition: 0.3s; }
+
+.overlay a:hover, .overlay a:focus { color: #FFFFFF; text-decoration: underline; }
+
+.overlay a span { font-family: sans-serif; font-style: italic; }
+
+@media screen and (max-height: 450px) { .overlay a {font-size: 20px} }
+/* 메뉴 영역 끝 */
+

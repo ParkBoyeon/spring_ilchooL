@@ -1,0 +1,586 @@
+<%@page import="org.jsoup.nodes.Element"%>
+<%@page import="org.jsoup.select.Elements"%>
+<%@page import="org.jsoup.Jsoup"%>
+<%@page import="org.jsoup.nodes.Document"%>
+<%@page import="java.util.List"%>
+<%@page import="study.ilchool.helper.FileHelper"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="study.ilchool.helper.HttpHelper"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="study.ilchool.model.NewsSearchItem"%>
+<%@page import="study.ilchool.dao.impl.NewsSearchDaoImpl"%>
+<%@page import="study.ilchool.dao.NewsSearchDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%
+String keyword = " ";
+request.setAttribute("keyword", keyword);
+//	int display = 100;
+//	request.setAttribute("display", display);
+
+StringBuilder sb = new StringBuilder();
+
+NewsSearchDao dao = new NewsSearchDaoImpl();
+List<NewsSearchItem> list = dao.getNewsSearchList(keyword);
+
+if (list == null) {
+	System.out.println("데이터 수신 실패");
+	return;
+}
+
+// 뉴스 박스 (title, pubDate)
+NewsSearchItem item1 = list.get(1);
+String title1 = item1.getTitle();
+String pubDate1 = item1.getPubDate();
+String link1 = item1.getLink();
+request.setAttribute("title1", title1);
+request.setAttribute("pubDate1", pubDate1);
+
+NewsSearchItem item2 = list.get(2);
+String title2 = item2.getTitle();
+String pubDate2 = item2.getPubDate();
+String link2 = item2.getLink();
+request.setAttribute("title2", title2);
+request.setAttribute("pubDate2", pubDate2);
+
+NewsSearchItem item3 = list.get(3);
+String title3 = item3.getTitle();
+String pubDate3 = item3.getPubDate();
+String link3 = item3.getLink();
+request.setAttribute("title3", title3);
+request.setAttribute("pubDate3", pubDate3);
+
+NewsSearchItem item4 = list.get(4);
+String title4 = item4.getTitle();
+String pubDate4 = item4.getPubDate();
+String link4 = item4.getLink();
+request.setAttribute("title4", title4);
+request.setAttribute("pubDate4", pubDate4);
+
+NewsSearchItem item5 = list.get(5);
+String title5 = item5.getTitle();
+String pubDate5 = item5.getPubDate();
+String link5 = item5.getLink();
+request.setAttribute("title5", title5);
+request.setAttribute("pubDate5", pubDate5);
+
+NewsSearchItem item6 = list.get(6);
+String title6 = item6.getTitle();
+String pubDate6 = item6.getPubDate();
+String link6 = item6.getLink();
+request.setAttribute("title6", title6);
+request.setAttribute("pubDate6", pubDate6);
+
+NewsSearchItem item7 = list.get(7);
+String title7 = item7.getTitle();
+String pubDate7 = item7.getPubDate();
+String link7 = item7.getLink();
+request.setAttribute("title7", title7);
+request.setAttribute("pubDate7", pubDate7);
+
+NewsSearchItem item8 = list.get(8);
+String title8 = item8.getTitle();
+String pubDate8 = item8.getPubDate();
+String link8 = item8.getLink();
+request.setAttribute("title8", title8);
+request.setAttribute("pubDate8", pubDate8);
+
+NewsSearchItem item9 = list.get(9);
+String title9 = item9.getTitle();
+String pubDate9 = item9.getPubDate();
+String link9 = item9.getLink();
+request.setAttribute("title9", title9);
+request.setAttribute("pubDate9", pubDate9);
+
+
+
+// --- 뉴스 크롤링 시작 --- //
+// 뉴스 박스 클릭시 모달 창에서 뉴스 제목
+String connUrl1 = item1.getLink();
+Document doc1 = Jsoup.connect(connUrl1).get();
+Elements ele1 = doc1.select("h3#articleTitle");
+String str1 = ele1.text();
+request.setAttribute("str1",str1);
+
+String connUrl2 = item2.getLink();
+Document doc2 = Jsoup.connect(connUrl2).get();
+Elements ele2 = doc2.select("h3#articleTitle");
+String str2 = ele2.text();
+request.setAttribute("str2",str2);
+
+String connUrl3 = item3.getLink();
+Document doc3 = Jsoup.connect(connUrl3).get();
+Elements ele3 = doc3.select("h3#articleTitle");
+String str3 = ele3.text();
+request.setAttribute("str3",str3);
+
+String connUrl4 = item4.getLink();
+Document doc4 = Jsoup.connect(connUrl4).get();
+Elements ele4 = doc4.select("h3#articleTitle");
+String str4 = ele4.text();
+request.setAttribute("str4",str4);
+
+String connUrl5 = item5.getLink();
+Document doc5 = Jsoup.connect(connUrl5).get();
+Elements ele5 = doc5.select("h3#articleTitle");
+String str5 = ele5.text();
+request.setAttribute("str5",str5);
+
+String connUrl6 = item6.getLink();
+Document doc6 = Jsoup.connect(connUrl6).get();
+Elements ele6 = doc6.select("h3#articleTitle");
+String str6 = ele6.text();
+request.setAttribute("str6",str6);
+
+String connUrl7 = item7.getLink();
+Document doc7 = Jsoup.connect(connUrl7).get();
+Elements ele7 = doc7.select("h3#articleTitle");
+String str7 = ele7.text();
+request.setAttribute("str7",str7);
+
+String connUrl8 = item8.getLink();
+Document doc8 = Jsoup.connect(connUrl8).get();
+Elements ele8 = doc8.select("h3#articleTitle");
+String str8 = ele8.text();
+request.setAttribute("str8",str8);
+
+String connUrl9 = item9.getLink();
+Document doc9 = Jsoup.connect(connUrl9).get();
+Elements ele9 = doc9.select("h3#articleTitle");
+String str9 = ele9.text();
+request.setAttribute("str9",str9);
+
+// 뉴스 박스 클릭시 모달창에서 뉴스 원문 내용
+Elements element1 = doc1.select("div#articleBodyContents");
+element1.select("br").append("\n\n");
+String text1 = element1.text();
+request.setAttribute("text1", text1);
+System.out.println(text1);
+
+Elements element2 = doc2.select("div#articleBodyContents");
+String text2 = element2.text();
+request.setAttribute("text2", text2);
+
+Elements element3 = doc3.select("div#articleBodyContents");
+String text3 = element3.text();
+request.setAttribute("text3", text3);
+
+Elements element4 = doc4.select("div#articleBodyContents");
+String text4 = element4.text();
+request.setAttribute("text4", text4);
+
+Elements element5 = doc5.select("div#articleBodyContents");
+String text5 = element5.text();
+request.setAttribute("text5", text5);
+
+Elements element6 = doc6.select("div#articleBodyContents");
+String text6 = element6.text();
+request.setAttribute("text6", text6);
+
+Elements element7 = doc7.select("div#articleBodyContents");
+String text7 = element7.text();
+request.setAttribute("text7", text7);
+
+Elements element8 = doc8.select("div#articleBodyContents");
+String text8 = element8.text();
+request.setAttribute("text8", text8);
+
+Elements element9 = doc9.select("div#articleBodyContents");
+String text9 = element9.text();
+request.setAttribute("text9", text9);
+
+/** 뉴스 키워드 크롤링 */
+String url_keyword = "https://www.nate.com";
+Document doc = Jsoup.connect(url_keyword).get();
+
+Elements key1 = doc.select("div#news_area div.bizCnt ol.isKeywordList li:nth-child(1) span.txt_rank");
+Elements key2 = doc.select("div#news_area div.bizCnt ol.isKeywordList li:nth-child(2) span.txt_rank");
+Elements key3 = doc.select("div#news_area div.bizCnt ol.isKeywordList li:nth-child(3) span.txt_rank");
+Elements key4 = doc.select("div#news_area div.bizCnt ol.isKeywordList li:nth-child(4) span.txt_rank");
+Elements key5 = doc.select("div#news_area div.bizCnt ol.isKeywordList li:nth-child(5) span.txt_rank");
+
+String[] rank = new String[5];
+
+rank[0] = key1.text();
+rank[1] = key2.text();
+rank[2] = key3.text();
+rank[3] = key4.text();
+rank[4] = key5.text();
+
+%>
+<%@ include file="../assets/head.jsp" %>
+
+<!-- datepicker -->
+<link href="../assets/css/datepicker.min.css" rel="stylesheet"
+	type="text/css" media="all">
+
+<link href="../assets/css/contents_news.css" rel="stylesheet"
+	type="text/css" media="all">
+</head>
+
+<body>
+	<%@ include file="../main/header.html" %>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1 col-sm-12">
+				<input type="text" id="datepicker" placeholder="Date"
+					class="form-control">
+			</div>
+
+			<div class="col-md-11 col-sm-12 news_graph">
+				<div id="graph">
+					<div id="news1" class="news"><p><%=rank[0]%></p></div>
+					<div id="news2" class="news"><p><%=rank[1]%></p></div>
+					<div id="news3" class="news"><p><%=rank[2]%></p></div>
+					<div id="news4" class="news"><p><%=rank[3]%></p></div>
+					<div id="news5" class="news"><p><%=rank[4]%></p></div>
+				</div>
+			</div>
+			
+			<div class="col-xs-12 news_ex">
+				<div id="line">
+					<div class="circle_grey"></div>
+					<div class="circle"></div>
+					<p>키워드를 선택하시면 시간대별 주요 뉴스를 확인할 수 있습니다.</p>
+				</div>
+				<div>
+					<h3><%=keyword%></h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal1"> <span
+							class="news_contents_box"> <span id="text"> <%=title1 %>
+							</span> <span id="text_date"> <%=pubDate1%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal2"> <span
+							class="news_contents_box"> <span id="text"> <%=title2 %>
+							</span> <span id="text_date"> <%=pubDate2%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal3"> <span
+							class="news_contents_box"> <span id="text"> <%=title3 %>
+							</span> <span id="text_date"> <%=pubDate3%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal4"> <span
+							class="news_contents_box"> <span id="text"> <%=title4 %>
+							</span> <span id="text_date"> <%=pubDate4%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal5"> <span
+							class="news_contents_box"> <span id="text"> <%=title5 %>
+							</span> <span id="text_date"> <%=pubDate5%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal6"> <span
+							class="news_contents_box"> <span id="text"> <%=title6 %>
+							</span> <span id="text_date"> <%=pubDate6%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal7"> <span
+							class="news_contents_box"> <span id="text"> <%=title7 %>
+							</span> <span id="text_date"> <%=pubDate7%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal8"> <span
+							class="news_contents_box"> <span id="text"> <%=title8 %>
+							</span> <span id="text_date"> <%=pubDate8%>
+							</span>
+						</span>
+						</a>
+					</div>
+				
+					<div class="col-lg-4 col-md-6 col-sm-12 news_box">
+						<a data-toggle="modal" href="#news_modal9"> <span
+							class="news_contents_box"> <span id="text"> <%=title9 %>
+							</span> <span id="text_date"> <%=pubDate9%>
+							</span>
+						</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- .modal -->
+	<div id="news_modal1" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str1%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element1 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal2" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str2%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+					
+					<%=element2 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal3" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str3%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+					
+					<%=element3%>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal4" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str4%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+					
+					<%=element4 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal5" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str5%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element5 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal6" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str6%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element6 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal7" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str7%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element7 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal8" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str8%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element8 %>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- .modal -->
+	<div id="news_modal9" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="news_modalLabel" aria-hidden="true">
+		<!-- .modal-dialog -->
+		<div class="modal-dialog">
+			<!-- .modal-content -->
+			<div class="modal-content" id="modal-content">
+				<!-- 제목 -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+
+					<h3 class="modal-title" id="myModalLabel"><%=str9%></h3>
+				</div>
+				<!-- 내용 -->
+				<div class="modal-body">
+				
+					<%=element9%>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+
+	<%@ include file="../main/footer.jsp" %>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="../assets/js/jquery-1.10.2.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../assets/js/datepicker.js"></script>
+	<script src="../assets/js/datepicker.ko.js"></script>
+	<script type="text/javascript">
+		$("#datepicker").datepicker({
+			language : 'ko'
+		});
+		
+		
+	</script>
+</body>
+
+</html>

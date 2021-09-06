@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="MembersLogMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="MembersLogMapper" type="project.spring.ilchooL.model.MembersLog">
+		<result property="log_id" column="log_id" />
+		<result property="log_date" column="log_date" />
+		<result property="log_time" column="log_time" />
+		<result property="log_device" column="log_device" />
+		<result property="log_page" column="log_page" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+    <!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem" parameterType="project.spring.ilchooL.model.MembersLog" resultMap="MembersLogMapper">
+        SELECT log_id, log_date, log_time, log_device, log_page, id FROM members_contents_log WHERE log_id=#{log_id}
+    </select>
+    
+    <!-- 다중행 조회를 위한 기능 정의 -->
+    <select id="selectList" parameterType="project.spring.ilchooL.model.MembersLog" resultMap="MembersLogMapper">
+        SELECT log_id, log_date, log_time, log_device, log_page, id FROM members_contents_log WHERE id=#{id} ORDER BY log_id DESC
+    </select>
+</mapper>

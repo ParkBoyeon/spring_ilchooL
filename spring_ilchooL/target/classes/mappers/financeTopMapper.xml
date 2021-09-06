@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="financeTopMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="financeTopMap" type="project.spring.ilchooL.model.FinanceTop">
+		<result property="top_id" column="top_id" />
+		<result property="t_name0" column="t_name" />
+		<result property="t_amount0" column="t_amount" />
+		<result property="t_updown0" column="t_updown" />
+		<result property="t_prev0" column="t_prev" />
+		<result property="t_rate0" column="t_rate" />
+	</resultMap>
+	
+	<insert id="insertFinanceTop"
+		parameterType="project.spring.ilchooL.model.FinanceTop"
+		useGeneratedKeys="true" keyProperty="top_id">
+		INSERT INTO finance_top (
+			t_name, t_amount, t_updown, t_prev, t_rate, t_date
+		) VALUES (
+			#{t_name0}, #{t_amount0}, #{t_updown0}, #{t_prev0}, #{t_rate0}, now()
+		)
+	</insert>
+	
+	
+	<update id="updateFinanceTop1"
+		parameterType="project.spring.ilchooL.model.FinanceTop">
+		UPDATE finance_top SET 
+		t_name=#{t_name0}, t_amount=#{t_amount0}, t_updown=#{t_updown0}, t_prev=#{t_prev0},t_rate=#{t_rate0}, t_date=now()
+		WHERE top_id=1
+	</update>
+	<update id="updateFinanceTop2"
+		parameterType="project.spring.ilchooL.model.FinanceTop">
+		UPDATE finance_top SET 
+		t_name=#{t_name0}, t_amount=#{t_amount0}, t_updown=#{t_updown0}, t_prev=#{t_prev0},t_rate=#{t_rate0}, t_date=now()
+		WHERE top_id=2
+	</update>
+	<update id="updateFinanceTop3"
+		parameterType="project.spring.ilchooL.model.FinanceTop">
+		UPDATE finance_top SET 
+		t_name=#{t_name0}, t_amount=#{t_amount0}, t_updown=#{t_updown0}, t_prev=#{t_prev0},t_rate=#{t_rate0}, t_date=now()
+		WHERE top_id=3
+	</update>
+	<update id="updateFinanceTop4"
+		parameterType="project.spring.ilchooL.model.FinanceTop">
+		UPDATE finance_top SET 
+		t_name=#{t_name0}, t_amount=#{t_amount0}, t_updown=#{t_updown0}, t_prev=#{t_prev0},t_rate=#{t_rate0}, t_date=now()
+		WHERE top_id=4
+	</update>
+	<update id="updateFinanceTop5"
+		parameterType="project.spring.ilchooL.model.FinanceTop">
+		UPDATE finance_top SET 
+		t_name=#{t_name0}, t_amount=#{t_amount0}, t_updown=#{t_updown0}, t_prev=#{t_prev0},t_rate=#{t_rate0}, t_date=now()
+		WHERE top_id=5
+	</update>
+</mapper>

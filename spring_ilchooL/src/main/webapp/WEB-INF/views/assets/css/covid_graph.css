@@ -1,0 +1,37 @@
+@charset "UTF-8";
+#covid_title h1 { text-align: center; }
+ul { list-style: none; text-align: center; padding: 0; margin: 0; }
+ul li { padding: 15px 0; }
+ul li span { font-size: 15px; }
+#today_title, #today_title span { font-size: 30px; }
+#up { color: red; }
+#down { color: blue; }
+
+.main_count { font-size: 20px; }
+
+.d_box { border-radius: 50px; opacity: 0.8; padding: 2px 10px; }
+
+.s_confirmed { color: rgba(217, 83, 79, 1); font-weight: bold; }
+.confirmed_box { background: rgba(217, 83, 79, 0.25); color: rgba(217, 83, 79, 1); font-weight: bold; }
+
+.s_released { color: rgba(66, 139, 202, 1); font-weight: bold; }
+.released_box { background: rgba(66, 139, 202, 0.25); color: rgba(66, 139, 202, 1); font-weight: bold; }
+
+.s_active { color: rgba(92, 184, 92, 1); font-weight: bold; }
+.active_box { background: rgba(92, 184, 92, 0.25); color: rgba(92, 184, 92, 1); font-weight: bold; }
+
+.s_death { color: rgba(240, 173, 78, 1); font-weight: bold; }
+.death_box { background: rgba(240, 173, 78, 0.25); color: rgba(240, 173, 78, 1); font-weight: bold; }
+
+#covid_count { margin-bottom: 20px; }
+#covid_graph .row { margin: 0 !important; }
+
+.covid_graph_btn_box p { position: relative; font-size: 15px; }
+
+.btn_box { text-align: center; }
+
+.graph_btn { width: 80% !important; margin-bottom: 20px; }
+
+.canvas_chart_container { position: relative; resize: both; padding-top: 30px; }
+
+#covidChart { width: 400px; height: 500px; }

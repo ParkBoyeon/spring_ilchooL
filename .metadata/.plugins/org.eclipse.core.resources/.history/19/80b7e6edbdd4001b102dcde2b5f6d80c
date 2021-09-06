@@ -1,0 +1,345 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="org.jsoup.nodes.Element"%>
+<%@page import="org.jsoup.select.Elements"%>
+<%@page import="org.jsoup.Jsoup"%>
+<%@page import="org.jsoup.nodes.Document"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%
+String url = "https://finance.naver.com/main/main.nhn";
+Document doc = Jsoup.connect(url).get();
+
+/** 해외 증시 */
+// 숫자 (앞: 순위), (뒤: 1종목명, 2현재가, 3전일대비)
+Elements elestock11 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(1) th:nth-child(1)");
+Elements elestock12 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(1) td:nth-child(2)");
+Elements elestock13 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(1) td:nth-child(3)");
+
+Elements elestock21 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(2) th:nth-child(1)");
+Elements elestock22 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(2) td:nth-child(2)");
+Elements elestock23 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(2) td:nth-child(3)");
+
+Elements elestock31 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(3) th:nth-child(1)");
+Elements elestock32 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(3) td:nth-child(2)");
+Elements elestock33 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(3) td:nth-child(3)");
+
+Elements elestock41 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(4) th:nth-child(1)");
+Elements elestock42 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(4) td:nth-child(2)");
+Elements elestock43 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(4) td:nth-child(3)");
+
+Elements elestock51 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(5) th:nth-child(1)");
+Elements elestock52 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(5) td:nth-child(2)");
+Elements elestock53 = doc.select("div.aside_stock table.tbl_home tbody tr:nth-child(5) td:nth-child(3)");
+
+String strstock11 = elestock11.text();
+String strstock12 = elestock12.text();
+String strstock13 = elestock13.text().substring(2);
+String stockud1 = elestock13.text().substring(0,2);
+
+String strstock21 = elestock21.text();
+String strstock22 = elestock22.text();
+String strstock23 = elestock23.text().substring(2);
+String stockud2 = elestock23.text().substring(0,2);
+
+String strstock31 = elestock31.text();
+String strstock32 = elestock32.text();
+String strstock33 = elestock33.text().substring(2);
+String stockud3 = elestock23.text().substring(0,2);
+
+String strstock41 = elestock41.text();
+String strstock42 = elestock42.text();
+String strstock43 = elestock43.text().substring(2);
+String stockud4 = elestock43.text().substring(0,2);
+
+String strstock51 = elestock51.text();
+String strstock52 = elestock52.text();
+String strstock53 = elestock53.text().substring(2);
+String stockud5 = elestock53.text().substring(0,2);
+
+
+/** 인기 검색 종목 (인기 종목) */
+// 숫자 (앞: 순위), (뒤: 뒤: 1종목명, 2현재가, 3전일대비)
+Elements elepopular11 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(1) th:nth-child(1)");
+Elements elepopular12 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(1) td:nth-child(2)");
+Elements elepopular13 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(1) td:nth-child(3)");
+Elements elepopularup1 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(1).up");
+Elements elepopulardown1 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(1).down");
+
+Elements elepopular21 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(2) th:nth-child(1)");
+Elements elepopular22 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(2) td:nth-child(2)");
+Elements elepopular23 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(2) td:nth-child(3)");
+Elements elepopularup2 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(2).up");
+Elements elepopulardown2 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(2).down");
+
+Elements elepopular31 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(3) th:nth-child(1)");
+Elements elepopular32 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(3) td:nth-child(2)");
+Elements elepopular33 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(3) td:nth-child(3)");
+Elements elepopularup3 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(3).up");
+Elements elepopulardown3 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(3).down");
+
+Elements elepopular41 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(4) th:nth-child(1)");
+Elements elepopular42 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(4) td:nth-child(2)");
+Elements elepopular43 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(4) td:nth-child(3)");
+Elements elepopularup4 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(4).up");
+Elements elepopulardown4 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(4).down");
+
+Elements elepopular51 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(5) th:nth-child(1)");
+Elements elepopular52 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(5) td:nth-child(2)");
+Elements elepopular53 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(5) td:nth-child(3)");
+Elements elepopularup5 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(5).up");
+Elements elepopulardown5 = doc.select("div.aside_popular table.tbl_home tbody tr:nth-child(5).down");
+
+String strpopular11 = elepopular11.text();
+String strpopular12 = elepopular12.text();
+String strpopular13 = elepopular13.text();
+String popularup1 = elepopularup1.text();
+String populardown1 = elepopulardown1.text();
+
+String strpopular21 = elepopular21.text();
+String strpopular22 = elepopular22.text();
+String strpopular23 = elepopular23.text();
+String popularup2 = elepopularup2.text();
+String populardown2 = elepopulardown2.text();
+
+String strpopular31 = elepopular31.text();
+String strpopular32 = elepopular32.text();
+String strpopular33 = elepopular33.text();
+String popularup3 = elepopularup3.text();
+String populardown3 = elepopulardown3.text();
+
+String strpopular41 = elepopular41.text();
+String strpopular42 = elepopular42.text();
+String strpopular43 = elepopular43.text();
+String popularup4 = elepopularup4.text();
+String populardown4 = elepopulardown4.text();
+
+String strpopular51 = elepopular51.text();
+String strpopular52 = elepopular52.text();
+String strpopular53 = elepopular53.text();
+String popularup5 = elepopularup5.text();
+String populardown5 = elepopulardown5.text();
+
+
+/** TOP 종목 (거래 상위) */
+// 숫자 (앞: 순위), (뒤: 1종목명, 2현재가, 3전일대비, 4등락률)
+Elements eletop11 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(1) th:nth-child(1)");
+Elements eletop12 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(1) td:nth-child(2)");
+Elements eletop13 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(1) td:nth-child(3)");
+Elements eletop14 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(1) td:nth-child(4)");
+
+Elements eletop21 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(2) th:nth-child(1)");
+Elements eletop22 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(2) td:nth-child(2)");
+Elements eletop23 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(2) td:nth-child(3)");
+Elements eletop24 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(2) td:nth-child(4)");
+
+Elements eletop31 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(3) th:nth-child(1)");
+Elements eletop32 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(3) td:nth-child(2)");
+Elements eletop33 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(3) td:nth-child(3)");
+Elements eletop34 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(3) td:nth-child(4)");
+
+Elements eletop41 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(4) th:nth-child(1)");
+Elements eletop42 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(4) td:nth-child(2)");
+Elements eletop43 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(4) td:nth-child(3)");
+Elements eletop44 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(4) td:nth-child(4)");
+
+Elements eletop51 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(5) th:nth-child(1)");
+Elements eletop52 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(5) td:nth-child(2)");
+Elements eletop53 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(5) td:nth-child(3)");
+Elements eletop54 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(5) td:nth-child(4)");
+
+Elements eletop61 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(6) th:nth-child(1)");
+Elements eletop62 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(6) td:nth-child(2)");
+Elements eletop63 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(6) td:nth-child(3)");
+Elements eletop64 = doc.select("table.tbl_home tbody#_topItems1 tr:nth-child(6) td:nth-child(4)");
+
+String strtop11 = eletop11.text();
+String strtop12 = eletop12.text();
+String strtop13 = eletop13.text().substring(2);
+String strtop14 = eletop14.text();
+String topud1 = eletop13.text().substring(0,2);
+
+String strtop21 = eletop21.text();
+String strtop22 = eletop22.text();
+String strtop23 = eletop23.text().substring(2);
+String strtop24 = eletop24.text();
+String topud2 = eletop23.text().substring(0,2);
+
+String strtop31 = eletop31.text();
+String strtop32 = eletop32.text();
+String strtop33 = eletop33.text().substring(2);
+String strtop34 = eletop34.text();
+String topud3 = eletop33.text().substring(0,2);
+
+String strtop41 = eletop41.text();
+String strtop42 = eletop42.text();
+String strtop43 = eletop43.text().substring(2);
+String strtop44 = eletop44.text();
+String topud4 = eletop43.text().substring(0,2);
+
+String strtop51 = eletop51.text();
+String strtop52 = eletop52.text();
+String strtop53 = eletop53.text().substring(2);
+String strtop54 = eletop54.text();
+String topud5 = eletop53.text().substring(0,2);
+
+String strtop61 = eletop61.text();
+String strtop62 = eletop62.text();
+String strtop63 = eletop63.text().substring(2);
+String strtop64 = eletop64.text();
+String topud6 = eletop63.text().substring(0,2);
+
+
+
+
+%>
+<%@ include file="../assets/head.jsp" %>
+
+<link rel="stylesheet" type="text/css"
+	href="../assets/css/contents_finance.css" />
+
+</head>
+
+<body>
+	<%@ include file="../main/header.html"%>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<p id="title">코스피</p>
+				<div class="finance md6">
+					<img src="../assets/img/contents_finance_graph_left.png" />
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<p id="title">코스닥</p>
+				<div class="finance md6">
+					<img src="../assets/img/contents_finance_graph_right.png" />
+				</div>
+			</div>
+
+			<div class="col-md-4 col-sm-12">
+				<p id="title">해외 증시</p>
+				<div class="finance md4 stock">
+					<div class="clearfix">
+						<p id="name"><%=strstock11%></p>
+						<p id="name"><%=strstock13%></p>
+						<p id="name"><%=strstock12%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strstock21%></p>
+						<p id="name"><%=strstock23%></p>
+						<p id="name"><%=strstock22%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strstock31%></p>
+						<p id="name"><%=strstock33%></p>
+						<p id="name"><%=strstock32%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strstock41%></p>
+						<p id="name"><%=strstock43%></p>
+						<p id="name"><%=strstock42%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strstock51%></p>
+						<p id="name"><%=strstock53%></p>
+						<p id="name"><%=strstock52%></p>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<p id="title">인기 종목</p>
+				<div class="finance md4 popular">
+					<div class="clearfix">
+						<p id="name"><%=strpopular11%></p>
+						<p id="name"><%=strpopular13%></p>
+						<p id="name"><%=strpopular12%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strpopular21%></p>
+						<p id="name"><%=strpopular23%></p>
+						<p id="name"><%=strpopular22%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strpopular31%></p>
+						<p id="name"><%=strpopular33%></p>
+						<p id="name"><%=strpopular32%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strpopular41%></p>
+						<p id="name"><%=strpopular43%></p>
+						<p id="name"><%=strpopular42%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strpopular51%></p>
+						<p id="name"><%=strpopular53%></p>
+						<p id="name"><%=strpopular52%></p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-4 col-sm-12">
+				<p id="title">거래 상위</p>
+				<div class="finance md4 top">
+					<div class="clearfix">
+						<p id="name"><%=strtop11%></p>
+						<p id="name"><%=strtop14%></p>
+						<p id="name"><%=strtop13%></p>
+						<p id="name"><%=strtop12%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strtop21%></p>
+						<p id="name"><%=strtop24%></p>
+						<p id="name"><%=strtop23%></p>
+						<p id="name"><%=strtop22%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strtop31%></p>
+						<p id="name"><%=strtop34%></p>
+						<p id="name"><%=strtop33%></p>
+						<p id="name"><%=strtop32%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strtop41%></p>
+						<p id="name"><%=strtop44%></p>
+						<p id="name"><%=strtop43%></p>
+						<p id="name"><%=strtop42%></p>
+					</div>
+					<div class="clearfix">
+						<p id="name"><%=strtop51%></p>
+						<p id="name"><%=strtop54%></p>
+						<p id="name"><%=strtop53%></p>
+						<p id="name"><%=strtop52%></p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<%@ include file="../main/footer.jsp"%>
+	<!-- Optional JavaScript; choose one of the two! -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="../assets/js/jquery-1.10.2.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../assets/js/contents_finance.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(window).onload().stock();
+			
+			
+			
+			popular();
+			
+			
+			top();
+		});
+	</script>
+	
+	
+	
+</body>
+
+</html>

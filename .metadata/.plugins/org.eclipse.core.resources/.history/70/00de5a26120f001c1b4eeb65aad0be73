@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>project.spring</groupId>
+	<artifactId>ilchooL</artifactId>
+	<name>ilchooL</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<properties>
+		<java-version>1.8</java-version>
+		<org.springframework-version>5.3.2</org.springframework-version>
+		<org.aspectj-version>1.9.6</org.aspectj-version>
+		<org.slf4j-version>1.7.30</org.slf4j-version>
+	</properties>
+	
+	<!-- 저장소 주소 추가 -->
+    <repositories>
+        <!-- UserAgent 모듈 -->
+        <repository>
+            <id>clojars</id>
+            <url>http://clojars.org/repo/</url>
+        </repository>
+    </repositories>
+    
+	<dependencies>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				 </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+				
+		<!-- ========== Spring을 구성하기 위한 기본 라이브러리들 추가 ========== -->
+        <!-- 1) Spring Context Support -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
+        <!-- 2) Java Servlet API -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 3) JavaServer Pages(TM) API -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 4) JavaServer Pages(TM) Standard Tag Library -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api -->
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- 5) Apache Standard Taglib Implementation -->
+        <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <!-- ========== JSP 수업에서 활용한 라이브러리들에 대한 의존성 설정 ========== -->
+        <!-- Lombok -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- clojure -->
+        <!-- https://mvnrepository.com/artifact/org.clojure/clojure -->
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>clojure</artifactId>
+            <version>1.10.1</version>
+        </dependency>
+
+        <!-- UserAgent -->
+        <!-- https://github.com/russellwhitaker/uap-clj -->
+        <dependency>
+            <groupId>uap-clj</groupId>
+            <artifactId>uap-clj</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+
+        <!-- MySQL JDBC (2021년01월13일 기준 최신 버전) -->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
+
+        <!-- Spring JDBC (Spring Framework 버전에 맞춤) -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		  <dependency>
+		      <groupId>org.mariadb.jdbc</groupId>
+		      <artifactId>mariadb-java-client</artifactId>
+		      <version>1.3.5</version>
+		  </dependency>
+
+        <!-- MyBatis (2021년01월13일 기준 최신 버전) -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.6</version>
+        </dependency>
+
+        <!-- Spring MyBatis (2021년01월13일 기준 최신 버전) -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+
+        <!-- Log4JDBC -->
+        <!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+            <version>1.16</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework-version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- OKHttp -->
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.0</version>
+        </dependency>
+
+        <!-- Logging Interceptor -->
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>4.9.0</version>
+        </dependency>
+
+        <!-- Retrofit2 -->
+        <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        
+        <!-- Gson -->
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+        <!-- Converter: Gson -->
+        <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        
+        <!-- JSoup Java HTML Parser -->
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.13.1</version>
+		</dependency>
+	    
+	    <!-- Java Mail -->
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
+        <!-- Commons IO -->
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        
+        <!-- Commons File Upload -->
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
+        
+        <!-- Thumbnailator -->
+        <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.13</version>
+        </dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+		<dependency>
+		    <groupId>net.sf.json-lib</groupId>
+		    <artifactId>json-lib</artifactId>
+		    <version>2.4</version>
+		    <classifier>jdk15</classifier>
+		</dependency>        
+	</dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.10</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>org.test.int1.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

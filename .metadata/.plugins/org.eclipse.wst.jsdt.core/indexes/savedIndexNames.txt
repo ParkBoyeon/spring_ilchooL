@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+D:\EZEN08\boyeon\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+924567697.index

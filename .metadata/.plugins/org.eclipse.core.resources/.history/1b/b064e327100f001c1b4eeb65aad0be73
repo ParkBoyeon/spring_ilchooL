@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="keywordMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="keywordMap" type="project.spring.ilchooL.model.Keyword">
+		<result property="keyword_id" column="keyword_id" />
+		<result property="news_keyword" column="news_keyword" />
+	</resultMap>
+	
+	<insert id="insertKeyword"
+		parameterType="project.spring.ilchooL.model.Keyword"
+		useGeneratedKeys="true" keyProperty="keyword_id">
+		INSERT INTO keyword (
+			news_keyword
+		) VALUES (
+			#{news_keyword}
+		)
+	</insert>
+	
+	<update id="updateKeyword1"
+		parameterType="project.spring.ilchooL.model.Keyword">
+		UPDATE keyword SET 
+		news_keyword=#{news_keyword}
+		WHERE keyword_id=1
+	</update>
+	<update id="updateKeyword2"
+		parameterType="project.spring.ilchooL.model.Keyword">
+		UPDATE keyword SET 
+		news_keyword=#{news_keyword}
+		WHERE keyword_id=2
+	</update>
+	<update id="updateKeyword3"
+		parameterType="project.spring.ilchooL.model.Keyword">
+		UPDATE keyword SET 
+		news_keyword=#{news_keyword}
+		WHERE keyword_id=3
+	</update>
+	<update id="updateKeyword4"
+		parameterType="project.spring.ilchooL.model.Keyword">
+		UPDATE keyword SET 
+		news_keyword=#{news_keyword}
+		WHERE keyword_id=4
+	</update>
+	<update id="updateKeyword5"
+		parameterType="project.spring.ilchooL.model.Keyword">
+		UPDATE keyword SET 
+		news_keyword=#{news_keyword}
+		WHERE keyword_id=5
+	</update>
+	
+	<select id="selectKeyword"
+		parameterType="project.spring.ilchooL.model.Keyword"
+		resultMap="keywordMap">
+		SELECT * FROM keyword
+	
+	</select>
+	
+
+
+	
+</mapper>

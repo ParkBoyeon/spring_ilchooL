@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="KosdaqMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="KosdaqMap" type="project.spring.ilchooL.model.Kosdaq">
+		<result property="Date" column="Date" />
+		<result property="kd_high" column="kd_high" />
+		<result property="kd_low" column="kd_low" />
+		<result property="kd_open" column="kd_open" />
+		<result property="kd_close" column="kd_close" />
+		<result property="kd_volume" column="kd_volume" />
+		<result property="kd_adj_close" column="kd_adj_close" />
+	</resultMap>
+	
+
+	
+
+	
+	<select id="selectKosdaq"
+		parameterType="project.spring.ilchooL.model.Kosdaq"
+		resultMap="KosdaqMap">
+		SELECT Date, kd_high, kd_low, kd_open, kd_close, kd_volume, kd_adj_close FROM kosdaq;
+	</select>
+	
+
+
+	
+</mapper>

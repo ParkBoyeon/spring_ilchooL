@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="financePopularMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="financePopularMap" type="project.spring.ilchooL.model.FinancePopular">
+		<result property="popular_id" column="popular_id" />
+		<result property="p_name0" column="p_name" />
+		<result property="p_amount0" column="p_amount" />
+		<result property="p_updown0" column="p_updown" />
+		<result property="p_prev0" column="p_prev" />
+	</resultMap>
+	
+	<insert id="insertFinancePopular"
+		parameterType="project.spring.ilchooL.model.FinancePopular"
+		useGeneratedKeys="true" keyProperty="popular_id">
+		INSERT INTO finance_popular (
+			p_name, p_amount, p_prev, p_updown, p_date
+		) VALUES (
+			#{p_name0}, #{p_amount0}, #{p_prev0}, #{p_updown0}, now()
+		)
+	</insert>
+	
+	<update id="updateFinancePopular1"
+		parameterType="project.spring.ilchooL.model.FinancePopular">
+		UPDATE finance_popular SET 
+		p_name=#{p_name0}, p_amount=#{p_amount0}, p_updown=#{p_updown0}, p_prev=#{p_prev0}, p_date=now()
+		WHERE popular_id=1
+	</update>
+	<update id="updateFinancePopular2"
+		parameterType="project.spring.ilchooL.model.FinancePopular">
+		UPDATE finance_popular SET 
+		p_name=#{p_name0}, p_amount=#{p_amount0}, p_updown=#{p_updown0}, p_prev=#{p_prev0}, p_date=now()
+		WHERE popular_id=2
+	</update>
+	<update id="updateFinancePopular3"
+		parameterType="project.spring.ilchooL.model.FinancePopular">
+		UPDATE finance_popular SET 
+		p_name=#{p_name0}, p_amount=#{p_amount0}, p_updown=#{p_updown0}, p_prev=#{p_prev0}, p_date=now()
+		WHERE popular_id=3
+	</update>
+	<update id="updateFinancePopular4"
+		parameterType="project.spring.ilchooL.model.FinancePopular">
+		UPDATE finance_popular SET 
+		p_name=#{p_name0}, p_amount=#{p_amount0}, p_updown=#{p_updown0}, p_prev=#{p_prev0}, p_date=now()
+		WHERE popular_id=4
+	</update>
+	<update id="updateFinancePopular5"
+		parameterType="project.spring.ilchooL.model.FinancePopular">
+		UPDATE finance_popular SET 
+		p_name=#{p_name0}, p_amount=#{p_amount0}, p_updown=#{p_updown0}, p_prev=#{p_prev0}, p_date=now()
+		WHERE popular_id=5
+	</update>
+	
+</mapper>

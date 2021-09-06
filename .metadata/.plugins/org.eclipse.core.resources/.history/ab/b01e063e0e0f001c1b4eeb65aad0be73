@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="weatherMapper">
+	<resultMap id="weatherMap" type="project.spring.ilchooL.model.Witem">
+		<result property="weather_id" column="weather_id" />
+		<result property="category" column="category" />
+		<result property="fcst_value" column="fcst_value" />
+		<result property="fcst_date" column="fcst_date" />
+		<result property="fcst_time" column="fcst_time" />
+		<result property="nx" column="nx" />
+		<result property="ny" column="ny" />
+	</resultMap>
+	
+	<insert id="insertWeatherItem" parameterType="project.spring.ilchooL.model.Witem">
+		Insert Into weather (
+			category, fcst_value, fcst_date, fcst_time, nx, ny
+		) Values ( #{category}, #{fcst_value}, #{fcst_date}, #{fcst_time}, #{nx}, ${ny} );
+	</insert>
+	
+	<update id="updateWeatherItem" parameterType="project.spring.ilchooL.model.Witem">
+		Update weather Set
+			category = #{category},
+			fcst_value = #{fcst_value}, 
+			fcst_date = #{fcst_date},
+			fcst_time = #{fcst_time},
+			nx = #{nx},
+			ny = #{ny}
+		Where category = #{category} And fcst_date = #{fcst_date} And fcst_time = #{fcst_time} And nx = #{nx} And ny = #{ny};
+	</update>
+	
+	<select id="selectWeatherItem" parameterType="project.spring.ilchooL.model.Witem" resultMap="weatherMap" >
+		Select category, fcst_value, fcst_date, fcst_time, nx, ny
+		From weather
+		Where weather_id = #{weather_id};
+	</select>
+	
+	<select id="selectWeatherList" parameterType="project.spring.ilchooL.model.Witem" resultMap="weatherMap" >
+		Select *
+		From weather
+		Where nx = #{nx} And ny = #{ny};
+	</select>
+	
+	<select id="selectChartList" parameterType="project.spring.ilchooL.model.Witem" resultMap="weatherMap" >
+		Select category, fcst_value, fcst_date, fcst_time From weather
+		Where category ='PTY' And nx = #{nx} And ny = #{ny}
+		ORDER BY fcst_date limit 0,720;
+	</select>
+	
+	<select id="selectTmxList" parameterType="project.spring.ilchooL.model.Witem" resultMap="weatherMap" >
+		Select category, fcst_value, fcst_date, fcst_time From weather
+		Where category='TMX' And nx = #{nx} And ny = #{ny}
+		ORDER BY fcst_date desc limit 0,10;
+	</select>
+		
+	<select id="selectTmnList" parameterType="project.spring.ilchooL.model.Witem" resultMap="weatherMap" >
+		Select category, fcst_value, fcst_date, fcst_time From weather
+		Where category='TMN' And nx = #{nx} And ny = #{ny}
+		ORDER BY fcst_date desc limit 0,10;
+	</select>
+</mapper>

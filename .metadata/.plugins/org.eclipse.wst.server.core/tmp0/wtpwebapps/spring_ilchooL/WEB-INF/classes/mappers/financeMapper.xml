@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="financeMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="financeMap" type="project.spring.ilchooL.model.Finance">
+		<result property="finance_id" column="finance_id" />
+		<result property="f_name0" column="f_name" />
+		<result property="f_amount0" column="f_amount" />
+		<result property="f_updown0" column="f_updown" />
+		<result property="f_prev0" column="f_prev" />
+	</resultMap>
+	
+	<insert id="insertFinance"
+		parameterType="project.spring.ilchooL.model.Finance"
+		useGeneratedKeys="true" keyProperty="finance_id">
+		INSERT INTO finance (
+			f_name, f_amount, f_updown, f_prev, f_date
+		) VALUES (
+			#{f_name0}, #{f_amount0}, #{f_updown0}, #{f_prev0}, now()
+		)
+	</insert>
+	
+	<update id="updateFinance1"
+		parameterType="project.spring.ilchooL.model.Finance">
+		UPDATE finance SET 
+		f_name=#{f_name0}, f_amount=#{f_amount0}, f_updown=#{f_updown0}, f_prev=#{f_prev0}, f_date=now()
+		WHERE finance_id=1
+	</update>
+	<update id="updateFinance2"
+		parameterType="project.spring.ilchooL.model.Finance">
+		UPDATE finance SET 
+		f_name=#{f_name0}, f_amount=#{f_amount0}, f_updown=#{f_updown0}, f_prev=#{f_prev0}, f_date=now()
+		WHERE finance_id=2
+	</update>
+	<update id="updateFinance3"
+		parameterType="project.spring.ilchooL.model.Finance">
+		UPDATE finance SET 
+		f_name=#{f_name0}, f_amount=#{f_amount0}, f_updown=#{f_updown0}, f_prev=#{f_prev0}, f_date=now()
+		WHERE finance_id=3
+	</update>
+	<update id="updateFinance4"
+		parameterType="project.spring.ilchooL.model.Finance">
+		UPDATE finance SET 
+		f_name=#{f_name0}, f_amount=#{f_amount0}, f_updown=#{f_updown0}, f_prev=#{f_prev0}, f_date=now()
+		WHERE finance_id=4
+	</update>
+	<update id="updateFinance5"
+		parameterType="project.spring.ilchooL.model.Finance">
+		UPDATE finance SET 
+		f_name=#{f_name0}, f_amount=#{f_amount0}, f_updown=#{f_updown0}, f_prev=#{f_prev0}, f_date=now()
+		WHERE finance_id=5
+	</update>
+	
+	
+	
+</mapper>

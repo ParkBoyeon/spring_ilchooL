@@ -1,0 +1,147 @@
+@charset "UTF-8";
+#title {
+	font-size: 24px;
+	padding-top: 50px;
+	padding-bottom: 12px;
+	text-align: center;
+	font-weight: 600;	
+}
+
+.canvasgraph {
+	position: relative; resize: both; padding-top: 30px;
+}
+
+#kospiChart {
+	width: 400px; height: 400px;
+}
+
+
+.md4 {
+	min-height: 200px;
+	padding: 20px 0;
+	border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.col-md-6 {
+	padding: 10px 5%;
+}
+
+.col-md-4 {
+	padding: 50px 1%;
+}
+.col-md-12 {
+	padding: 0;
+}
+
+
+
+button {
+    margin-right: 20px;
+    width: 150px;
+
+}
+
+
+.finance p:nth-child(1) {
+	display: inline;
+    font-size: 14px;
+    padding: 10px 0 10px 10px;
+    vertical-align: middle;
+    float: left;
+    color: black;
+}
+
+
+.finance p {
+    font-size: 12px;
+    padding: 10px 2px;
+    vertical-align: middle;
+    float: right;
+    color: black;
+}
+
+.finance span {
+	margin-top: 12px;
+}
+
+
+#number {
+	color: #6879ab;
+}
+
+.stock_img {
+	width: 7px;
+	height: 6px;
+	margin-top: 4px;
+}
+
+#name {
+	padding-right: 2.5px;
+}
+
+
+label.tab_item {
+    margin-bottom: 20px;
+}
+
+
+/* 탭 전체 스타일 */
+.tabs {
+    padding: 50px 0;
+    margin-top: 50px;
+    /* padding-bottom: 40px; */
+    background-color: #ffffff;
+    /* box-shadow: 0 0 10px rgb(0 0 0 / 20%); */
+    margin: 0 auto;
+  }
+
+/* 탭 스타일 */
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  text-align: center;
+  color: #333333;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+
+/* 라디오 버튼 UI삭제*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/* 탭 컨텐츠 스타일 */
+.tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+  
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  
+}
+
+
+/* 선택 된 탭 콘텐츠를 표시 */
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/* 선택된 탭 스타일 */
+.tabs input:checked + .tab_item {
+	text-decoration: underline #428bca;
+	text-decoration-thickness: 5px;
+	background-color: #ffffff;
+}
